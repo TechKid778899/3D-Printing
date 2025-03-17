@@ -1,0 +1,19 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Dreamweaver files
+_private/
+_notes/
+*.lck
+*.dws
+*.log
+design-time/
+
+# Editor settings (VSCode, WebStorm, etc.)
+.vscode/
+.idea/
+
+# Node.js (if using it)
+node_modules/
+package-lock.json
