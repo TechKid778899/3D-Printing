@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Printing Designs</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+        }
+        nav ul li {
+            margin: 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        section {
+            padding: 50px;
+            text-align: center;
+        }
+        .catalog {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            text-align: center;
+        }
+        .item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>3D Printing Designs</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="designs.html">Printing Designs</a></li>
+                <li><a href="calculator.html">Cost Calculator</a></li> <!-- Added link to calculator -->
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Available 3D Printed Designs</h2>
+        <p>Choose from our pre-made designs, printed with PETG and PLA.</p>
+
+        <div class="catalog">
+            <div class="item">
+                <img src="images/keychain.jpg" alt="Custom Keychain">
+                <h3>Custom Keychain</h3>
+                <p>Personalized keychains available in PETG and PLA.</p>
+                <p><strong>Price:</strong> £5.00</p>
+                <button class="button">Order Now</button>
+            </div>
+
+            <div class="item">
+                <img src="images/figurine.jpg" alt="Miniature Figurine">
+                <h3>Miniature Figurine</h3>
+                <p>Decorative figurines for collections or gifts.</p>
+                <p><strong>Price:</strong> £10.00</p>
+                <button class="button">Order Now</button>
+            </div>
+
+            <div class="item">
+                <img src="images/phonestand.jpg" alt="Phone Stand">
+                <h3>Phone Stand</h3>
+                <p>Sturdy phone stand for hands-free viewing.</p>
+                <p><strong>Price:</strong> £8.00</p>
+                <button class="button">Order Now</button>
+            </div>
+
+            <div class="item">
+                <img src="images/nameplate.jpg" alt="Custom Nameplate">
+                <h3>Custom Nameplate</h3>
+                <p>Personalized desk nameplates with custom text.</p>
+                <p><strong>Price:</strong> £12.00</p>
+                <button class="button">Order Now</button>
+            </div>
+
+            <div class="item">
+                <img src="images/cableorganizer.jpg" alt="Cable Organizer">
+                <h3>Cable Organizer</h3>
+                <p>Keep your cables neat with a printed organizer.</p>
+                <p><strong>Price:</strong> £6.00</p>
+                <button class="button">Order Now</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Your 3D Printing Business</p>
+    </footer>
+</body>
+</html>

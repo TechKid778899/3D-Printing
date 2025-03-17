@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Print Cost Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background-color: #222;
+            color: white;
+            padding: 20px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+        }
+        nav ul li {
+            margin: 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        .basket-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+        }
+        section {
+            padding: 50px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: auto;
+        }
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>3D Print Cost Calculator</h1>
+        <nav>
+            <ul>
+                <li><a href="HomePage.html">Home</a></li>
+                <li><a href="designs.html">Printing Designs</a></li>
+                <li><a href="Calculator.html">Cost Calculator</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="basket.html" class="basket-icon">&nbsp; 🛒</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <div class="container">
+            <h2>Estimate Your Print Cost</h2>
+            <p>Select your filament type and enter print dimensions.</p>
+
+            <label for="filament">Filament Type:</label>
+            <select id="filament">
+                <option value="pla">PLA</option>
+                <option value="petg">PETG</option>
+            </select>
+            <br><br>
+
+            <label for="width">Width (mm):</label>
+            <input type="number" id="width" min="1" max="220" placeholder="Max: 220mm">
+            <br><br>
+
+            <label for="depth">Depth (mm):</label>
+            <input type="number" id="depth" min="1" max="220" placeholder="Max: 220mm">
+            <br><br>
+
+            <label for="height">Height (mm):</label>
+            <input type="number" id="height" min="1" max="240" placeholder="Max: 240mm">
+            <br><br>
+
+            <button class="button" onclick="calculateCost()">Calculate</button>
+            <button class="button" onclick="addToBasket()">Add to Basket</button>
+
+            <h3>Total Cost: £<span id="cost">0.00</span></h3>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Your 3D Printing Business</p>
+    </footer>
+
+    <script>
+        let prices = {};
+
+        fetch('prices.json')
+            .then(response => response.json())
+            .then(data => prices = data)
+            .catch(error => console.error('Error loading prices:', error));
+
+        function calculateCost() {
+            let filamentType = document.getElementById("filament").value;
+            let width = parseFloat(document.getElementById("width").value);
+            let depth = parseFloat(document.getElementById("depth").value);
+            let height = parseFloat(document.getElementById("height").value);
+
+            if (isNaN(width) || isNaN(depth) || isNaN(height) || width <= 0 || depth <= 0 || height <= 0) {
+                alert("You've missed out on one of the sizes, double check they are all in.");
+                return;
+            }
+
+            if (width > 220 || depth > 220 || height > 240) {
+                alert("What you've entered is too big. Max size is (220x220x240 mm). ");
+                return;
+            }
+
+            if (!prices[filamentType]) {
+                alert("Pricing data not available.");
+                return;
+            }
+
+            let volume = width * depth * height;
+            let cost = (volume / 100000) * prices[filamentType];
+
+            document.getElementById("cost").innerText = cost.toFixed(2);
+        }
+
+        function addToBasket() {
+            let filamentType = document.getElementById("filament").value;
+            let width = document.getElementById("width").value;
+            let depth = document.getElementById("depth").value;
+            let height = document.getElementById("height").value;
+            let cost = document.getElementById("cost").innerText;
+
+            if (cost === "0.00") {
+                alert("Calculate cost before adding to basket.");
+                return;
+            }
+
+            let basket = JSON.parse(localStorage.getItem("basket")) || [];
+            basket.push({ filamentType, width, depth, height, cost });
+            localStorage.setItem("basket", JSON.stringify(basket));
+            alert("Item added to basket!");
+        }
+    </script>
+</body>
+</html>
